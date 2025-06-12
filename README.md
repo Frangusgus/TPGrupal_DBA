@@ -1,6 +1,6 @@
 # TPGrupal_DBA
 
-Empresa e sublimación familiar, dos personas, realizaban sublimación de remeras, tazas, buzos, gorros y realizaban vinilos (que también podían ser sublimados en remeras, buzos, gorras, etc.)
+Empresa de sublimación familiar, dos personas, realizaban sublimación de remeras, tazas, buzos, gorros y realizaban vinilos (que también podían ser sublimados en remeras, buzos, gorras, etc.)
 Han realizado también almohadones, termos, hoppys, entre otras cosas. La lista puede seguir.
 Todo personalizado.
 
