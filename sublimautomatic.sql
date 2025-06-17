@@ -52,3 +52,14 @@ CREATE TABLE proveedores (
 );
 
 
+-- Insertar algunos insumos que se usarían en la tabla Insumos
+INSERT INTO insumos (idInsumo, nombreInsumo, tipoInsumo, precioInsumo, cantidadInsumo) VALUES
+(1, 'Tinta', 'Cambiaresto', 5000, '2'),
+(2, 'Resma A4 Sublimable', 'Cambiaresto', 3500, '5'),
+(3, 'Rollo Vinilo Rojo', 'Cambiaresto', 7000, '3'),
+(4, 'Rollo Vinilo Amarillo', 'Cambiaresto', 7500, '1'),
+(5, 'Tazas Sublimables Plástico', 'Cambiaresto', 8000, '12'),
+(6, 'Remeras Sublimables Gris', 'Cambiaresto', 5000, '5'),
+(7, 'Remeras Sublimables Blancas', 'Cambiaresto', 5500, '7'),
+(8, 'Gorro Sublimable', 'Cambiaresto', 4000, '24');
+
