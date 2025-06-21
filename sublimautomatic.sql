@@ -52,14 +52,52 @@ CREATE TABLE proveedores (
 );
 
 
--- Insertar algunos insumos que se usarían en la tabla Insumos
-INSERT INTO insumos (idInsumo, nombreInsumo, tipoInsumo, precioInsumo, cantidadInsumo) VALUES
-(1, 'Tinta', 'Cambiaresto', 5000, '2'),
-(2, 'Resma A4 Sublimable', 'Cambiaresto', 3500, '5'),
-(3, 'Rollo Vinilo Rojo', 'Cambiaresto', 7000, '3'),
-(4, 'Rollo Vinilo Amarillo', 'Cambiaresto', 7500, '1'),
-(5, 'Tazas Sublimables Plástico', 'Cambiaresto', 8000, '12'),
-(6, 'Remeras Sublimables Gris', 'Cambiaresto', 5000, '5'),
-(7, 'Remeras Sublimables Blancas', 'Cambiaresto', 5500, '7'),
-(8, 'Gorro Sublimable', 'Cambiaresto', 4000, '24');
+-- Insertar datos de clientes a la tabla clientes
+INSERT INTO clientes (idCliente, nombreCliente, apellidoCliente, telefonoCliente, redsocialCliente) VALUES
+(1, 'Facundo', 'Palmariciotti', 1523025534, 'Instagram'),
+('Leandro Javier', 'Fernández', 1522224444, 'Facebook'),
+('Rosana', 'Sosa', 1534042502, 'Instagram'),
+('Iván', 'Bona', 1534042502, 'Instagram'),
+('Kenneth', 'Loreto', 154893707, 'TikTok'),
+('Mauro', 'Di Gallo', 153592088, 'Facebook),
+('Maria Paz', 'Short', 135039237, 'Instagram')
+;
 
+-- Insertar datos de productos a la tabla productos
+INSERT INTO productos (idProducto, tipoProducto, talleProducto, materialProducto, cantidadProducto, costoProducto, diseñoProducto, estadoProducto) VALUES
+(1, 'Remera Negra Perro Rosana', 'Indumentaria', 5000, '2'),
+('Taza Boca Juniors', 'Tazas', 3500, '5'),
+('Stickers Facundo', 'Stickers', 7000, '3'),
+('Remera Blanca Back to the Future', 'Indumentaria', 7500, '1'),
+('Taza Cumple Bona', 'Tazas', 8000, '12'),
+('Buzo River Campeón', 'Indumentaria', 5000, '5')
+;
+
+-- Insertar datos de pedidos a la tabla pedidos
+INSERT INTO pedidos (idPedido, idCliente, idProducto) VALUES
+(1, 'Pedido Kenko', 'Remera', 5000, '2'),
+('Pedido Maria', 'Remera', 3500, '5'),
+('Pedido Ro', 'Remera', 7000, '3'),
+('Pedido Facu', 'Stickers', 7500, '1'),
+('Pedido Lean', 'Gorras', 8000, '12')
+;
+
+-- Insertar datos de proveedores a la tabla proveedores
+INSERT INTO proveedores (idProveedor, nombreProveedor, contactoProveedor, direccionProveedor, cantidadCompra) VALUES
+(1, 'DANITEX', '5491124720585', 'Tucumán 2980, CABA', '5'),
+('DeTintas', '1139512690', 'Tucumán 2086', '10'),
+('Once Tex', '1168201924', 'Junín 495', '3'),
+('Sublimer Argentina', 'Azcuénaga 603', '1125049446', '2')
+;
+
+-- Insertar datos de insumos a la tabla insumos
+INSERT INTO insumos (idInsumo, nombreInsumo, tipoInsumo, precioInsumo, cantidadInsumo) VALUES
+(1, 'Tinta', 'Impresión', 5000, '2'),
+('Resma A4 Sublimable', 'Impresión', 3500, '5'),
+('Rollo Vinilo Rojo', 'Sublimable', 7000, '3'),
+('Rollo Vinilo Amarillo', 'Sublimable', 7500, '1'),
+('Tazas Sublimables Plástico', 'Plástico', 8000, '12'),
+('Remeras Sublimables Gris', 'Textil', 5000, '5'),
+('Remeras Sublimables Blancas', 'Textil', 5500, '7'),
+('Gorro Sublimable', 'Textil', 4000, '24')
+;
