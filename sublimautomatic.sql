@@ -6,7 +6,7 @@ CREATE TABLE clientes (
   idCliente INT(4) AUTO_INCREMENT PRIMARY KEY,
   nombreCliente VARCHAR(10),
   apellidoCliente  VARCHAR (10),
-  telefonoCliente  VARCHAR(13),
+  telefonoCliente  VARCHAR(10),
   redsocialCliente VARCHAR(8)	
 );
 
@@ -14,81 +14,43 @@ CREATE TABLE clientes (
 -- Creación de la tabla productos
 CREATE TABLE productos (
   idProducto INT(4) AUTO_INCREMENT PRIMARY KEY,
-  tipoProducto VARCHAR(10),
+  tipoProducto VARCHAR(50),
   talleProducto INT(4),
-  materialProducto VARCHAR(13),
+  materialProducto VARCHAR(50),
   cantidadProducto INT(4),
   costoProducto FLOAT(10),
-  diseñoProducto VARCHAR(13),
-  estadoProducto VARCHAR(6)
+  diseñoProducto VARCHAR(50),
+  estadoProducto VARCHAR(50)
 );
 
 -- Creación de la tabla pedidos
 CREATE TABLE pedidos (
   idPedido INT(4) AUTO_INCREMENT PRIMARY KEY,
-  fechaPedido DATE,
-  fechaEntrega DATE,
   idCliente INT(4),
   idProducto  INT(4),
   FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
   FOREIGN KEY (idCliente) REFERENCES clientes(idCliente)
 );
--- Creación de la tabla diseño
-CREATE TABLE disenio (
-  idDiseño INT(4) AUTO_INCREMENT PRIMARY KEY,
-  descripción VARCHAR (10),
-  archivoDiseño VARCHAR (10),
-  estado VARCHAR (10),
-  );
 
 -- Creación de la tabla insumos
 CREATE TABLE insumos (
   idInsumo INT(4) AUTO_INCREMENT PRIMARY KEY,
-  nombreInsumo VARCHAR(10),
-  tipoInsumo VARCHAR(10),
+  nombreInsumo VARCHAR(50),
+  tipoInsumo VARCHAR(50),
   precioInsumo FLOAT(10),
   cantidadInsumo INT(4)
 );
 
 
+
 -- Creación de la tabla proveedores
 CREATE TABLE proveedores (
   idProveedor INT(4) AUTO_INCREMENT PRIMARY KEY,
-  nombreProveedor VARCHAR(10),
+  nombreProveedor VARCHAR(50),
   contactoProveedor VARCHAR(13),
   direccionProveedor VARCHAR(10),
   cantidadCompra INT(4)
 );
-
--- Creación de la tabla compras
-CREATE TABLE compra (
-  idCompra INT(4) AUTO_INCREMENT PRIMARY KEY,
-  fecha DATE,
-  idProveedor INT (10),
-  idProducto INT (10),
-  cantidad INT (10),
-  precioUnitario DECIMAL 
-  nombreCompra VARCHAR(10),
-  contactoProveedor VARCHAR(13),
-  direccionProveedor VARCHAR(10),
-  cantidadCompra INT(4)
-);
-
--- Creación de la tabla costo
-CREATE TABLE compra (
-  idCosto INT(4) AUTO_INCREMENT PRIMARY KEY,
-  tipoInsumo 
-  cantidadUsada INT (3),
-  costoUnitario INT (3),
- 
-);
-
--- Creación de la tabla compras
-CREATE TABLE stock (
-  idStock INT(4) AUTO_INCREMENT PRIMARY KEY,
-  cantidadDisponible INT (4)
-  );
-
 
 -- Insertar datos de clientes a la tabla clientes
 INSERT INTO clientes (idCliente, nombreCliente, apellidoCliente, telefonoCliente, redsocialCliente) VALUES
