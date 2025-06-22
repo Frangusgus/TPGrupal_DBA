@@ -34,7 +34,7 @@ CREATE TABLE pedidos (
   FOREIGN KEY (idCliente) REFERENCES clientes(idCliente)
 );
 -- Creación de la tabla diseño
-CREATE TABLE diseño (
+CREATE TABLE disenio (
   idDiseño INT(4) AUTO_INCREMENT PRIMARY KEY,
   descripción VARCHAR (10),
   archivoDiseño VARCHAR (10),
