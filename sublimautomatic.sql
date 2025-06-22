@@ -101,3 +101,52 @@ INSERT INTO insumos (idInsumo, nombreInsumo, tipoInsumo, precioInsumo, cantidadI
 ('Remeras Sublimables Blancas', 'Textil', 5500, '7'),
 ('Gorro Sublimable', 'Textil', 4000, '24')
 ;
+-- Obtener el nombre del cliente que realizó la venta con idVenta = 2:
+
+SELECT nombreCliente
+FROM ventas
+INNER JOIN clientes ON ventas.idCliente = clientes.idCliente WHERE ventas.idVenta = 2;
+
+-- Obtener el total de ventas de cada cliente:
+
+SELECT nombreCliente, apellidoCliente, COUNT(ventas.idVenta) AS 'Total de Ventas' 
+FROM clientes RIGHT JOIN ventas ON clientes.idCliente = ventas.idCliente GROUP BY clientes.idCliente;
+
+-- Obtener todos los productos de la categoría electrónica con su nombre de categoría
+
+SELECT nombreProducto, nombreCategoria
+FROM productos
+INNER JOIN categorias ON productos.idCategoria = categorias.idCategoria WHERE categorias.idCategoria = 1;
+
+-- Obtener el nombre y la dirección de todos los clientes que han realizado ventas:
+
+SELECT nombreCliente, direccionCliente
+FROM clientes
+INNER JOIN ventas ON clientes.idCliente = ventas.idCliente GROUP BY clientes.idCliente;
+
+-- Obtener los detalles de ventas de la venta con idVenta = 1, incluyendo el nombre del producto y su precio de venta:
+
+SELECT nombreProducto, precioVenta
+FROM productos INNER JOIN ventas_detalle ON productos.idProducto = ventas_detalle.idProducto
+JOIN ventas ON ventas_detalle.idVenta = ventas.idVenta WHERE ventas.idVenta = 1;
+
+
+-- Obtener el total de ventas realizadas por cada cliente, mostrando el nombre del cliente y la cantidad total de ventas (es igual que la cuarta profe)
+
+SELECT nombreCliente, COUNT(ventas.idVenta) AS 'Total de Ventas'
+FROM clientes RIGHT JOIN ventas ON clientes.idCliente = ventas.idCliente GROUP BY clientes.idCliente;
+
+-- Obtener los nombres de las categorías y la cantidad de productos vendidos en cada categoría
+
+SELECT nombreCategoria, SUM(ventas_detalle.cantidad) AS 'Productos vendidos en cada Categoría'
+FROM categorias 
+JOIN productos ON categorias.idCategoria = productos.idCategoria
+JOIN ventas_detalle ON productos.idProducto = ventas_detalle.idProducto GROUP BY categorias.idCategoria;
+
+-- Obtener el nombre de cada cliente y el total gastado en compras por cada cliente, incluyendo aquellos clientes que no han realizado compras:
+
+SELECT nombreCliente,  SUM(productos.precioCompra) AS 'Total gastado en compra'
+FROM clientes 
+JOIN ventas ON ventas.idCliente = clientes.idCliente
+JOIN ventas_detalle ON ventas.idVenta = ventas_detalle.idVenta
+JOIN productos ON ventas_detalle.idProducto = productos.idProducto GROUP BY clientes.nombreCliente;
