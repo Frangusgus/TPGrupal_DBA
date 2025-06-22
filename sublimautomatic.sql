@@ -59,7 +59,7 @@ INSERT INTO clientes (idCliente, nombreCliente, apellidoCliente, telefonoCliente
 ('Rosana', 'Sosa', 1534042502, 'Instagram'),
 ('Iván', 'Bona', 1534042502, 'Instagram'),
 ('Kenneth', 'Loreto', 154893707, 'TikTok'),
-('Mauro', 'Di Gallo', 153592088, 'Facebook),
+('Mauro', 'Di Gallo', 153592088, 'Facebook'),
 ('Maria Paz', 'Short', 135039237, 'Instagram')
 ;
 
