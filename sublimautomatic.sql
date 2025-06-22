@@ -26,11 +26,20 @@ CREATE TABLE productos (
 -- Creación de la tabla pedidos
 CREATE TABLE pedido (
   idPedido INT(4) AUTO_INCREMENT PRIMARY KEY,
+  fechaPedido DATE,
+  fechaEntrega DATE,
   idCliente INT(4),
   idProducto  INT(4),
   FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
   FOREIGN KEY (idCliente) REFERENCES clientes(idCliente)
 );
+-- Creación de la tabla diseño
+CREATE TABLE diseño (
+  idDiseño INT(4) AUTO_INCREMENT PRIMARY KEY,
+  descripción VARCHAR (10),
+  archivoDiseño VARCHAR (10),
+  estado VARCHAR (10),
+  );
 
 -- Creación de la tabla insumos
 CREATE TABLE insumos (
@@ -51,6 +60,26 @@ CREATE TABLE proveedores (
   cantidadCompra INT(4)
 );
 
+-- Creación de la tabla compras
+CREATE TABLE compra (
+  idCompra INT(4) AUTO_INCREMENT PRIMARY KEY,
+  fecha DATE,
+  idProveedor INT (10),
+  idProducto INT (10),
+  cantidad INT (10),
+  precioUnitario DECIMAL 
+  nombreCompra VARCHAR(10),
+  contactoProveedor VARCHAR(13),
+  direccionProveedor VARCHAR(10),
+  cantidadCompra INT(4)
+);
+
+-- Creación de la tabla compras
+CREATE TABLE stock (
+  idStock INT(4) AUTO_INCREMENT PRIMARY KEY,
+  cantidadDisponible INT (4)
+  );
+
 
 -- Insertar datos de clientes a la tabla clientes
 INSERT INTO clientes (idCliente, nombreCliente, apellidoCliente, telefonoCliente, redsocialCliente) VALUES
@@ -59,7 +88,7 @@ INSERT INTO clientes (idCliente, nombreCliente, apellidoCliente, telefonoCliente
 ('Rosana', 'Sosa', 1534042502, 'Instagram'),
 ('Iván', 'Bona', 1534042502, 'Instagram'),
 ('Kenneth', 'Loreto', 154893707, 'TikTok'),
-('Mauro', 'Di Gallo', 153592088, 'Facebook'),
+('Mauro', 'Di Gallo', 153592088, 'Facebook),
 ('Maria Paz', 'Short', 135039237, 'Instagram')
 ;
 
