@@ -24,7 +24,7 @@ CREATE TABLE productos (
 );
 
 -- Creación de la tabla pedidos
-CREATE TABLE pedido (
+CREATE TABLE pedidos (
   idPedido INT(4) AUTO_INCREMENT PRIMARY KEY,
   fechaPedido DATE,
   fechaEntrega DATE,
