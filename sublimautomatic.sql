@@ -4,8 +4,8 @@ USE SublimAutomatic;
 -- Creación de la tabla clientes
 CREATE TABLE clientes (
   idCliente INT(4) AUTO_INCREMENT PRIMARY KEY,
-  nombreCliente VARCHAR(10),
-  apellidoCliente  VARCHAR (10),
+  nombreCliente VARCHAR(50),
+  apellidoCliente  VARCHAR (50),
   telefonoCliente  VARCHAR(10),
   redsocialCliente VARCHAR(8)	
 );
@@ -16,7 +16,6 @@ CREATE TABLE productos (
   idProducto INT(4) AUTO_INCREMENT PRIMARY KEY,
   tipoProducto VARCHAR(50),
   talleProducto INT(4),
-  materialProducto VARCHAR(50),
   cantidadProducto INT(4),
   costoProducto FLOAT(10),
   diseñoProducto VARCHAR(50),
@@ -45,11 +44,11 @@ CREATE TABLE insumos (
 
 -- Creación de la tabla proveedores
 CREATE TABLE proveedores (
-  idProveedor INT(4) AUTO_INCREMENT PRIMARY KEY,
+  idProveedor INT(1) AUTO_INCREMENT PRIMARY KEY,
   nombreProveedor VARCHAR(50),
-  contactoProveedor VARCHAR(13),
-  direccionProveedor VARCHAR(10),
-  cantidadCompra INT(4)
+  contactoProveedor VARCHAR(20),
+  direccionProveedor VARCHAR(20),
+  cantidadCompra INT(3)
 );
 
 -- Insertar datos de clientes a la tabla clientes
