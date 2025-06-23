@@ -3,44 +3,49 @@ USE SublimAutomatic;
 
 -- Creación de la tabla clientes
 CREATE TABLE clientes (
-  idCliente INT(4) AUTO_INCREMENT PRIMARY KEY,
+  idCliente INT(3) AUTO_INCREMENT PRIMARY KEY,
   nombreCliente VARCHAR(50),
   apellidoCliente  VARCHAR (50),
   telefonoCliente  VARCHAR(10),
   redsocialCliente VARCHAR(8)	
 );
 
-
 -- Creación de la tabla productos
 CREATE TABLE productos (
-  idProducto INT(4) AUTO_INCREMENT PRIMARY KEY,
-  tipoProducto VARCHAR(50),
+  idProducto INT(3) AUTO_INCREMENT PRIMARY KEY,
+  nombreProducto VARCHAR(50),
+  tipoProducto VARCHAR(20),
   talleProducto INT(4),
-  cantidadProducto INT(4),
   costoProducto FLOAT(10),
-  diseñoProducto VARCHAR(50),
   estadoProducto VARCHAR(50)
 );
+-- Si en vez de material producto y cantidad producto, la cantidad del producto lo dejamos en stock? y el material ya está definido en tipo producto o en el mismo nombre? En diseño no sé qué poner
+
 
 -- Creación de la tabla pedidos
 CREATE TABLE pedidos (
-  idPedido INT(4) AUTO_INCREMENT PRIMARY KEY,
-  idCliente INT(4),
-  idProducto  INT(4),
+  idPedido INT(3) AUTO_INCREMENT PRIMARY KEY,
+  idCliente INT(3),
+  idProducto  INT(3),
   FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
   FOREIGN KEY (idCliente) REFERENCES clientes(idCliente)
 );
 
 -- Creación de la tabla insumos
 CREATE TABLE insumos (
-  idInsumo INT(4) AUTO_INCREMENT PRIMARY KEY,
+  idInsumo INT(3) AUTO_INCREMENT PRIMARY KEY,
   nombreInsumo VARCHAR(50),
   tipoInsumo VARCHAR(50),
   precioInsumo FLOAT(10),
-  cantidadInsumo INT(4)
+  cantidadInsumo INT(3)
 );
 
-
+-- Creación de la tabla stock
+CREATE TABLE stock (
+  idStock INT(3) AUTO_INCREMENT PRIMARY KEY,
+  tipoStock VARCHAR(50),
+  cantidadStock INT(3),
+);
 
 -- Creación de la tabla proveedores
 CREATE TABLE proveedores (
@@ -50,26 +55,29 @@ CREATE TABLE proveedores (
   direccionProveedor VARCHAR(20),
   cantidadCompra INT(3)
 );
+-- Es un negocio pequeño, no vamos a tener más de 3 o 5 proveedores, me parece que por ahí conviene más el INT 1 para el ID, y en insumos y otras cosas lo mismo, 4 es muchísimo, 3 por ahí entra más en las posibilidades que tenemos (y sigue siendo algo exagerado, pero bueno)
+
+
 
 -- Insertar datos de clientes a la tabla clientes
-INSERT INTO clientes (idCliente, nombreCliente, apellidoCliente, telefonoCliente, redsocialCliente) VALUES
-(1, 'Facundo', 'Palmariciotti', 1523025534, 'Instagram'),
-('Leandro Javier', 'Fernández', 1522224444, 'Facebook'),
-('Rosana', 'Sosa', 1534042502, 'Instagram'),
-('Iván', 'Bona', 1534042502, 'Instagram'),
-('Kenneth', 'Loreto', 154893707, 'TikTok'),
-('Mauro', 'Di Gallo', 153592088, 'Facebook'),
-('Maria Paz', 'Short', 135039237, 'Instagram')
+INSERT INTO clientes (idCliente, nombreCliente, apellidoCliente, telefonoCliente, redsocialCliente) VALUES -- En vez de que tipo de red social, hagamos de cuenta que sòlo usamos Instagram, y el dato de redsocial es el nombre de usuario
+(1, 'Facundo', 'Palmariciotti', 1523025534, 'elpalma'),
+('Leandro Javier', 'Fernández', 1522224444, 'leanfernandez'),
+('Rosana', 'Sosa', 1534042502, 'rososalamasgrosa'),
+('Iván', 'Bona', 1534042502, 'bonax_'),
+('Kenneth', 'Loreto', 154893707, 'kenkoformidable'),
+('Mauro', 'Di Gallo', 153592088, 'mauromak'),
+('Maria Paz', 'Short', 135039237, 'mapazshort')
 ;
 
 -- Insertar datos de productos a la tabla productos
-INSERT INTO productos (idProducto, tipoProducto, talleProducto, materialProducto, cantidadProducto, costoProducto, diseñoProducto, estadoProducto) VALUES
-(1, 'Remera Negra Perro Rosana', 'Indumentaria', 5000, '2'),
-('Taza Boca Juniors', 'Tazas', 3500, '5'),
-('Stickers Facundo', 'Stickers', 7000, '3'),
-('Remera Blanca Back to the Future', 'Indumentaria', 7500, '1'),
-('Taza Cumple Bona', 'Tazas', 8000, '12'),
-('Buzo River Campeón', 'Indumentaria', 5000, '5')
+INSERT INTO productos (idProducto, nombreProducto, tipoProducto, talleProducto, costoProducto, estadoProducto) VALUES
+(1, 'Remera Gris Perro Rosana', 'Indumentaria', 'L', 5000, 'Vendido'),
+('Taza Boca Juniors', 'Tazas', NULL, 3500, 'En preparación'),
+('Stickers Facundo', 'Stickers', NULL, 7000, 'Vendido'),
+('Remera Blanca Back to the Future', 'Indumentaria', 'XXL' 7500, 'Vendido'),
+('Taza Cumple Bona', 'Tazas', NULL, 8000, 'Vendido'),
+('Buzo River Campeón', 'Indumentaria', 'XL', 5000, 'En preparación')
 ;
 
 -- Insertar datos de pedidos a la tabla pedidos
@@ -79,6 +87,17 @@ INSERT INTO pedidos (idPedido, idCliente, idProducto) VALUES
 ('Pedido Ro', 'Remera', 7000, '3'),
 ('Pedido Facu', 'Stickers', 7500, '1'),
 ('Pedido Lean', 'Gorras', 8000, '12')
+;
+
+-- Insertar datos de pedidos a la tabla stock
+INSERT INTO stock (idStock, tipoStock, cantidadStock) VALUES
+(1, 'Remera blanca', 40),
+('Taza Plástico', 20),
+('Gorra verde y blanca', 10),
+('Hoppy', 5),
+('Termo autocebable', 15),
+('Buzo gris', 20),
+('Remera gris', 20)
 ;
 
 -- Insertar datos de proveedores a la tabla proveedores
@@ -100,6 +119,12 @@ INSERT INTO insumos (idInsumo, nombreInsumo, tipoInsumo, precioInsumo, cantidadI
 ('Remeras Sublimables Blancas', 'Textil', 5500, '7'),
 ('Gorro Sublimable', 'Textil', 4000, '24')
 ;
+
+
+-- Crear una tabla de vista que oculte el nombre, apellido, telefono y redes de clientes en nombreCliente
+CREATE VIEW nombredeCliente AS
+SELECT nombreCliente, apellidoCliente, telefonoCliente, redsocialCliente FROM clientes
+
 -- Obtener el nombre del cliente que realizó la venta con idVenta = 2:
 
 SELECT nombreCliente
