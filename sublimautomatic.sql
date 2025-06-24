@@ -25,8 +25,8 @@ CREATE TABLE productos (
 -- Creación de la tabla pedidos
 CREATE TABLE pedidos (
   idPedido INT AUTO_INCREMENT PRIMARY KEY,
-  idCliente INT,
-  idProducto  INT,
+  idCliente INT AUTO_INCREMENT,
+  idProducto  INT AUTO_INCREMENT,
   FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
   FOREIGN KEY (idCliente) REFERENCES clientes(idCliente)
 );
@@ -37,14 +37,14 @@ CREATE TABLE insumos (
   nombreInsumo VARCHAR(50),
   tipoInsumo VARCHAR(50),
   precioInsumo FLOAT(10),
-  cantidadInsumo INT
+  cantidadInsumo INT AUTO_INCREMENT
 );
 
 -- Creación de la tabla stock
 CREATE TABLE stock (
   idStock INT AUTO_INCREMENT PRIMARY KEY,
   tipoStock VARCHAR(50),
-  cantidadStock INT,
+  cantidadStock INT AUTO_INCREMENT,
 );
 
 -- Creación de la tabla proveedores
@@ -53,7 +53,7 @@ CREATE TABLE proveedores (
   nombreProveedor VARCHAR(50),
   contactoProveedor VARCHAR(20),
   direccionProveedor VARCHAR(20),
-  cantidadCompra INT
+  cantidadCompra INT AUTO_INCREMENT
 );
 -- Es un negocio pequeño, no vamos a tener más de 3 o 5 proveedores, me parece que por ahí conviene más el INT 1 para el ID, y en insumos y otras cosas lo mismo, 4 es muchísimo, 3 por ahí entra más en las posibilidades que tenemos (y sigue siendo algo exagerado, pero bueno)
 
