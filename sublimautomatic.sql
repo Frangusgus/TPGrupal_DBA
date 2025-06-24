@@ -3,7 +3,7 @@ USE SublimAutomatic;
 
 -- Creación de la tabla clientes
 CREATE TABLE clientes (
-  idCliente INT(3) AUTO_INCREMENT PRIMARY KEY,
+  idCliente INT AUTO_INCREMENT PRIMARY KEY,
   nombreCliente VARCHAR(50),
   apellidoCliente  VARCHAR (50),
   telefonoCliente  VARCHAR(10),
@@ -12,10 +12,10 @@ CREATE TABLE clientes (
 
 -- Creación de la tabla productos
 CREATE TABLE productos (
-  idProducto INT(3) AUTO_INCREMENT PRIMARY KEY,
+  idProducto INT AUTO_INCREMENT PRIMARY KEY,
   nombreProducto VARCHAR(50),
   tipoProducto VARCHAR(20),
-  talleProducto INT(4),
+  talleProducto INT,
   costoProducto FLOAT(10),
   estadoProducto VARCHAR(50)
 );
@@ -24,36 +24,36 @@ CREATE TABLE productos (
 
 -- Creación de la tabla pedidos
 CREATE TABLE pedidos (
-  idPedido INT(3) AUTO_INCREMENT PRIMARY KEY,
-  idCliente INT(3),
-  idProducto  INT(3),
+  idPedido INT AUTO_INCREMENT PRIMARY KEY,
+  idCliente INT,
+  idProducto  INT,
   FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
   FOREIGN KEY (idCliente) REFERENCES clientes(idCliente)
 );
 
 -- Creación de la tabla insumos
 CREATE TABLE insumos (
-  idInsumo INT(3) AUTO_INCREMENT PRIMARY KEY,
+  idInsumo INT AUTO_INCREMENT PRIMARY KEY,
   nombreInsumo VARCHAR(50),
   tipoInsumo VARCHAR(50),
   precioInsumo FLOAT(10),
-  cantidadInsumo INT(3)
+  cantidadInsumo INT
 );
 
 -- Creación de la tabla stock
 CREATE TABLE stock (
-  idStock INT(3) AUTO_INCREMENT PRIMARY KEY,
+  idStock INT AUTO_INCREMENT PRIMARY KEY,
   tipoStock VARCHAR(50),
-  cantidadStock INT(3),
+  cantidadStock INT,
 );
 
 -- Creación de la tabla proveedores
 CREATE TABLE proveedores (
-  idProveedor INT(1) AUTO_INCREMENT PRIMARY KEY,
+  idProveedor INT AUTO_INCREMENT PRIMARY KEY,
   nombreProveedor VARCHAR(50),
   contactoProveedor VARCHAR(20),
   direccionProveedor VARCHAR(20),
-  cantidadCompra INT(3)
+  cantidadCompra INT
 );
 -- Es un negocio pequeño, no vamos a tener más de 3 o 5 proveedores, me parece que por ahí conviene más el INT 1 para el ID, y en insumos y otras cosas lo mismo, 4 es muchísimo, 3 por ahí entra más en las posibilidades que tenemos (y sigue siendo algo exagerado, pero bueno)
 
