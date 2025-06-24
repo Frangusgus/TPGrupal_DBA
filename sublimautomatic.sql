@@ -66,7 +66,7 @@ INSERT INTO clientes (idCliente, nombreCliente, apellidoCliente, telefonoCliente
 ('Rosana', 'Sosa', 1534042502, 'rososalamasgrosa'),
 ('Iván', 'Bona', 1534042502, 'bonax_'),
 ('Kenneth', 'Loreto', 154893707, 'kenkoformidable'),
-('Mauro', 'Di Gallo', 153592088, 'mauromak'),
+('Gian', 'Malaspina', 153592088, 'gianelmaskpo'),
 ('Maria Paz', 'Short', 135039237, 'mapazshort')
 ;
 
@@ -82,11 +82,12 @@ INSERT INTO productos (idProducto, nombreProducto, tipoProducto, talleProducto, 
 
 -- Insertar datos de pedidos a la tabla pedidos
 INSERT INTO pedidos (idPedido, idCliente, idProducto) VALUES
-(1, 'Pedido Kenko', 'Remera', 5000, '2'),
-('Pedido Maria', 'Remera', 3500, '5'),
-('Pedido Ro', 'Remera', 7000, '3'),
-('Pedido Facu', 'Stickers', 7500, '1'),
-('Pedido Lean', 'Gorras', 8000, '12')
+(1, 'Pedido Kenko', 5, 6),
+('Pedido Maria', 7, 4),
+('Pedido Ro', 3, 1),
+('Pedido Facu', 1,  3),
+('Pedido Bona', 2, 5),
+('Pedido Gian', 6, 2)
 ;
 
 -- Insertar datos de pedidos a la tabla stock
@@ -102,10 +103,10 @@ INSERT INTO stock (idStock, tipoStock, cantidadStock) VALUES
 
 -- Insertar datos de proveedores a la tabla proveedores
 INSERT INTO proveedores (idProveedor, nombreProveedor, contactoProveedor, direccionProveedor, cantidadCompra) VALUES
-(1, 'DANITEX', '5491124720585', 'Tucumán 2980, CABA', '5'),
+(1, 'DANITEX', '5491124720585', 'Tucumán 2980', '5'),
 ('DeTintas', '1139512690', 'Tucumán 2086', '10'),
 ('Once Tex', '1168201924', 'Junín 495', '3'),
-('Sublimer Argentina', 'Azcuénaga 603', '1125049446', '2')
+('Sublimer Argentina', '1125049446', 'Azcuénaga 603', '2')
 ;
 
 -- Insertar datos de insumos a la tabla insumos
