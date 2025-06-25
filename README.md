@@ -1,5 +1,3 @@
-**TPGrupal_DBA**
-
 Trabajamos con el emprendimiento "Sueños Sublimaciones"
 
 “Sueños Sublimaciones” es un emprendimiento familiar dedicado a la creación de productos personalizados mediante sublimación como tazas, remeras, almohadones, etc. Actualmente, el negocio gestiona su actividad de manera completamente manual, lo cual genera dificultades operativas y administrativas. Nuestro proyecto se propone el desarollo de una base de datos que permita digitalizar la información que se encuentra a papel para crear un sistema dónde se permita tener un control de los procesos del negocio desde la toma de un pedido hasta la gestión de un inventario y el control de costos.
