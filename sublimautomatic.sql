@@ -3,59 +3,52 @@ USE SublimAutomatic;
 
 -- Creación de la tabla clientes
 CREATE TABLE clientes (
-  idCliente INT AUTO_INCREMENT PRIMARY KEY,
-  nombreCliente VARCHAR(50),
-  apellidoCliente  VARCHAR (50),
-  telefonoCliente  VARCHAR(10),
-  redsocialCliente VARCHAR(8)	
+  idCliente INT(3) AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(25),
+  apellido  VARCHAR(25),
+  telefono INT(7),
+  direccion VARCHAR(25)	
+);
+
+-- Creación de la tabla pedidos
+CREATE TABLE pedidos (
+  idPedido INT(3) AUTO_INCREMENT PRIMARY KEY,
+  idCliente INT(3) AUTO_INCREMENT,
+  fechaEntrega DATE,
+  estado VARCHAR (10),
+  FOREIGN KEY (idCliente) REFERENCES clientes(idCliente)
 );
 
 -- Creación de la tabla productos
 CREATE TABLE productos (
-  idProducto INT AUTO_INCREMENT PRIMARY KEY,
-  nombreProducto VARCHAR(50),
-  tipoProducto VARCHAR(20),
-  talleProducto INT,
-  costoProducto FLOAT(10),
-  estadoProducto VARCHAR(50)
+  idProducto INT(3) AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(25),
+  tipo VARCHAR(20),
+  precioVenta INT(4),
+  descripcion VARCHAR(30),
+  cantidad INT(3)
 );
--- Si en vez de material producto y cantidad producto, la cantidad del producto lo dejamos en stock? y el material ya está definido en tipo producto o en el mismo nombre? En diseño no sé qué poner
 
-
--- Creación de la tabla pedidos
-CREATE TABLE pedidos (
-  idPedido INT AUTO_INCREMENT PRIMARY KEY,
-  idCliente INT AUTO_INCREMENT,
-  idProducto  INT AUTO_INCREMENT,
-  FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
-  FOREIGN KEY (idCliente) REFERENCES clientes(idCliente)
-);
 
 -- Creación de la tabla insumos
 CREATE TABLE insumos (
-  idInsumo INT AUTO_INCREMENT PRIMARY KEY,
-  nombreInsumo VARCHAR(50),
-  tipoInsumo VARCHAR(50),
-  precioInsumo FLOAT(10),
-  cantidadInsumo INT AUTO_INCREMENT
+  idInsumo INT(3) AUTO_INCREMENT PRIMARY KEY,
+  idProveedor INT(3),
+  nombreinsumo VARCHAR(30),
+  cantidad INT(3),
+  precioUnitario (3),
+  FOREIGN KEY (idProveedor) REFERENCES proveedores(idProveedor)
 );
 
--- Creación de la tabla stock
-CREATE TABLE stock (
-  idStock INT AUTO_INCREMENT PRIMARY KEY,
-  tipoStock VARCHAR(50),
-  cantidadStock INT AUTO_INCREMENT,
-);
 
 -- Creación de la tabla proveedores
 CREATE TABLE proveedores (
-  idProveedor INT AUTO_INCREMENT PRIMARY KEY,
-  nombreProveedor VARCHAR(50),
-  contactoProveedor VARCHAR(20),
-  direccionProveedor VARCHAR(20),
-  cantidadCompra INT AUTO_INCREMENT
+  idProveedor INT(3) AUTO_INCREMENT PRIMARY KEY,
+  nombreProveedor VARCHAR(25),
+  telefono INT(7),
+  mail VARCHAR(10),
+  direccion VARCHAR(25)
 );
--- Es un negocio pequeño, no vamos a tener más de 3 o 5 proveedores, me parece que por ahí conviene más el INT 1 para el ID, y en insumos y otras cosas lo mismo, 4 es muchísimo, 3 por ahí entra más en las posibilidades que tenemos (y sigue siendo algo exagerado, pero bueno)
 
 
 
