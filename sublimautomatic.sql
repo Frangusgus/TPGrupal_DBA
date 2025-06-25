@@ -23,7 +23,6 @@ CREATE TABLE pedidos (
 CREATE TABLE productos (
   idProducto INT(3) AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(25),
-  tipo VARCHAR(20),
   precioVenta INT(4),
   descripcion VARCHAR(30),
   cantidad INT(3)
@@ -34,9 +33,9 @@ CREATE TABLE productos (
 CREATE TABLE insumos (
   idInsumo INT(3) AUTO_INCREMENT PRIMARY KEY,
   idProveedor INT(3),
-  nombreinsumo VARCHAR(30),
+  nombreinsumo VARCHAR(20),
   cantidad INT(3),
-  precioUnitario (3),
+  precioUnitario FLAOT(4),
   FOREIGN KEY (idProveedor) REFERENCES proveedores(idProveedor)
 );
 
@@ -46,78 +45,72 @@ CREATE TABLE proveedores (
   idProveedor INT(3) AUTO_INCREMENT PRIMARY KEY,
   nombreProveedor VARCHAR(25),
   telefono INT(7),
-  mail VARCHAR(10),
+  mail VARCHAR(30),
   direccion VARCHAR(25)
 );
 
 
 
 -- Insertar datos de clientes a la tabla clientes
-INSERT INTO clientes (idCliente, nombreCliente, apellidoCliente, telefonoCliente, redsocialCliente) VALUES -- En vez de que tipo de red social, hagamos de cuenta que sòlo usamos Instagram, y el dato de redsocial es el nombre de usuario
-(1, 'Facundo', 'Palmariciotti', 1523025534, 'elpalma'),
-('Leandro Javier', 'Fernández', 1522224444, 'leanfernandez'),
-('Rosana', 'Sosa', 1534042502, 'rososalamasgrosa'),
-('Iván', 'Bona', 1534042502, 'bonax_'),
-('Kenneth', 'Loreto', 154893707, 'kenkoformidable'),
-('Gian', 'Malaspina', 153592088, 'gianelmaskpo'),
-('Maria Paz', 'Short', 135039237, 'mapazshort')
+INSERT INTO clientes (idCliente, nombre, apellido, telefono, direccion) VALUES 
+(1, 'Facundo', 'Palmariciotti', 1523025534, 'Av. Entre Rios 745 6A'),
+('Leandro Javier', 'Fernández', 1522224444, 'Av Cordoba 2886 PB'),
+('Rosana', 'Sosa', 1534042502, 'Vélez Sársfield 680 (Avellaneda)'),
+('Iván', 'Bona', 1534042502, 'Deán Funes 2225 (Merlo)'),
+('Kenneth', 'Loreto', 154893707, 'Av. Las Heras 2840'),
+('Gian', 'Malaspina', 153592088, 'Lavalle 540 2C'),
+('Maria Paz', 'Short', 135039237, 'Islas Malvinas 2681 Timbre 2 (San Andrés)'),
+('Mauro', 'Di Gallo', 1523690874, 'Av Brasil 1021 PB')
 ;
 
 -- Insertar datos de productos a la tabla productos
-INSERT INTO productos (idProducto, nombreProducto, tipoProducto, talleProducto, costoProducto, estadoProducto) VALUES
-(1, 'Remera Gris Perro Rosana', 'Indumentaria', 'L', 5000, 'Vendido'),
-('Taza Boca Juniors', 'Tazas', NULL, 3500, 'En preparación'),
-('Stickers Facundo', 'Stickers', NULL, 7000, 'Vendido'),
-('Remera Blanca Back to the Future', 'Indumentaria', 'XXL' 7500, 'Vendido'),
-('Taza Cumple Bona', 'Tazas', NULL, 8000, 'Vendido'),
-('Buzo River Campeón', 'Indumentaria', 'XL', 5000, 'En preparación')
+INSERT INTO productos (idProducto, nombre, precioVenta, descripcion, cantidad) VALUES
+(1, 'Remera Rosana', 5500, 'Remera Gris con foto de perrito', 1 ),
+('Taza Boca Juniors', 3500, 'Taza de plástico con logo de Boca Juniors', 10),
+('Stickers Facundo', 7000, 'Stickers con ilustraciones de Facundo', 50),
+('Remera Back to the Future', 7500, 'Remera blanca con motivo película Back to the Future', 5),
+('Taza Cumple Bona', 8000, 'Taza para cumpleaños de cliente', 5),
+('Buzo River Campeón', 5000, 'Buzo negro con vinilo de River campeón', 2)
 ;
 
 -- Insertar datos de pedidos a la tabla pedidos
-INSERT INTO pedidos (idPedido, idCliente, idProducto) VALUES
-(1, 'Pedido Kenko', 5, 6),
-('Pedido Maria', 7, 4),
-('Pedido Ro', 3, 1),
-('Pedido Facu', 1,  3),
-('Pedido Bona', 2, 5),
-('Pedido Gian', 6, 2)
-;
-
--- Insertar datos de pedidos a la tabla stock
-INSERT INTO stock (idStock, tipoStock, cantidadStock) VALUES
-(1, 'Remera blanca', 40),
-('Taza Plástico', 20),
-('Gorra verde y blanca', 10),
-('Hoppy', 5),
-('Termo autocebable', 15),
-('Buzo gris', 20),
-('Remera gris', 20)
+INSERT INTO pedidos (idPedido, idCliente, fechaEntrega, estado) VALUES
+(6, 5, '2025-06-27', 'En preparación'),
+(4, 7, '2025-06-24', 'Vendido'),
+(1, 3, '2025-07-07', 'En preparación'),
+(3, 1, '2025-06-29', 'En preparación'),
+(5, 4, '2025-05-15', 'Vendido'),
+(2, 6, '2025-07-08', 'En preparación')
 ;
 
 -- Insertar datos de proveedores a la tabla proveedores
-INSERT INTO proveedores (idProveedor, nombreProveedor, contactoProveedor, direccionProveedor, cantidadCompra) VALUES
-(1, 'DANITEX', '5491124720585', 'Tucumán 2980', '5'),
-('DeTintas', '1139512690', 'Tucumán 2086', '10'),
-('Once Tex', '1168201924', 'Junín 495', '3'),
-('Sublimer Argentina', '1125049446', 'Azcuénaga 603', '2')
+INSERT INTO proveedores (idProveedor, nombreProveedor, telefono, mail, direccion) VALUES
+(1, 'DANITEX', '1123991098', 'daniteximportador@gmail.com', 'Tucumán 2980'),
+('DeTintas', '1139512690', 'impo@detintas.com.ar', 'Tucumán 2086'),
+('Once Tex', '1168201924', 'oncetex@gmail.com', 'Junín 495')
 ;
 
 -- Insertar datos de insumos a la tabla insumos
-INSERT INTO insumos (idInsumo, nombreInsumo, tipoInsumo, precioInsumo, cantidadInsumo) VALUES
-(1, 'Tinta', 'Impresión', 5000, '2'),
-('Resma A4 Sublimable', 'Impresión', 3500, '5'),
-('Rollo Vinilo Rojo', 'Sublimable', 7000, '3'),
-('Rollo Vinilo Amarillo', 'Sublimable', 7500, '1'),
-('Tazas Sublimables Plástico', 'Plástico', 8000, '12'),
-('Remeras Sublimables Gris', 'Textil', 5000, '5'),
-('Remeras Sublimables Blancas', 'Textil', 5500, '7'),
-('Gorro Sublimable', 'Textil', 4000, '24')
+INSERT INTO insumos (idInsumo, idProveedor, nombreInsumo, cantidad, precioUnitario) VALUES
+(1, 2, 'Tinta', 2, 5000),
+(2, 2, 'Resma A4 Sublimable', 4, 3500),
+(3, 3, 'Rollo Vinilo Rojo', 3, 7000),
+(4, 3, 'Rollo Vinilo Blanco', 3, 7500),
+(5, 3, 'Tazas Sublimables Plástico', 12, 2500),
+(6, 1, 'Remeras Sublimables Gris', 15, 5000),
+(7, 1, 'Remeras Sublimables Blancas', 15, 5500),
+(8, 1, 'Buzo Sublimable Negro', 10, 4000)
 ;
 
 
--- Crear una tabla de vista que oculte el nombre, apellido, telefono y redes de clientes en nombreCliente
+-- Crear una tabla de vista que oculte información del cliente
 CREATE VIEW nombredeCliente AS
-SELECT nombreCliente, apellidoCliente, telefonoCliente, redsocialCliente FROM clientes
+SELECT nombre, apellido, telefono, direccion FROM clientes
+  
+
+-- Crear una tabla de vista que oculte información de proveedores
+CREATE VIEW datosProveedor AS
+SELECT nombreProveedor, telefono, mail, direccion FROM proveedores
 
 -- Obtener el nombre del cliente que realizó la venta con idVenta = 2:
 
