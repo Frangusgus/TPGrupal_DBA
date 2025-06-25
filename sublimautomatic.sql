@@ -6,7 +6,7 @@ CREATE TABLE clientes (
   idCliente INT(3) AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(25),
   apellido  VARCHAR(25),
-  telefono VARCHAR(20),
+  telefono INT(14),
   direccion VARCHAR(50)
 );
 
@@ -23,7 +23,7 @@ CREATE TABLE pedidos (
 CREATE TABLE productos (
   idProducto INT(3) AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(25),
-  precioVenta INT(4),
+  precioVenta DECIMAL(8,2),
   descripcion VARCHAR(70),
   cantidad INT(3)
 );
@@ -32,7 +32,7 @@ CREATE TABLE productos (
 CREATE TABLE proveedores (
   idProveedor INT(3) AUTO_INCREMENT PRIMARY KEY,
   nombreProveedor VARCHAR(25),
-  telefono VARCHAR(25),
+  telefono INT(14),
   mail VARCHAR(30),
   direccion VARCHAR(25)
 );
@@ -43,7 +43,7 @@ CREATE TABLE insumos (
   idProveedor INT(3),
   nombreinsumo VARCHAR(40),
   cantidad INT(3),
-  precioUnitario FLOAT(4),
+  precioUnitario DECIMAL(8,2),
   FOREIGN KEY (idProveedor) REFERENCES proveedores(idProveedor)
 );
 
@@ -99,14 +99,33 @@ INSERT INTO insumos (idInsumo, idProveedor, nombreInsumo, cantidad, precioUnitar
 ;
 
 
--- Crear una tabla de vista que oculte información del cliente
+-- Crear una tabla de vista con información del cliente
 CREATE VIEW nombredeCliente AS
 SELECT nombre, apellido, telefono, direccion FROM clientes;
   
 
--- Crear una tabla de vista que oculte información de proveedores
+-- Crear una tabla de vista con información de proveedores
 CREATE VIEW datosProveedor AS
 SELECT nombreProveedor, telefono, mail, direccion FROM proveedores;
+
+-- Crear una tabla de vista para ver los teléfonos en limpio
+
+CREATE VIEW vistatelefonosLimpios AS
+SELECT 
+'Cliente' AS tipo,
+idCliente AS id,
+CONCAT(nombre, ' ', apellido) AS nombre,
+REPLACE(CAST(telefono AS CHAR), ',', '') AS telefono
+FROM clientes
+
+UNION
+
+SELECT 
+'Proveedor' AS tipo,
+idProveedor AS id,
+nombreProveedor AS nombre,
+REPLACE(CAST(telefono AS CHAR), ',', '') AS telefono
+FROM proveedores;
 
 -- Seleccionar las distintas tablas para ver sus valores
 SELECT * FROM insumos;
@@ -114,53 +133,28 @@ SELECT * FROM pedidos;
 SELECT * FROM proveedores;
 SELECT * FROM productos;
 SELECT * FROM clientes;
+SELECT * FROM pedidoproductos;
 
--- Obtener el nombre del cliente que realizó la venta con idVenta = 2:
+-- Mirar vistas
 
-SELECT nombreCliente
-FROM ventas
-INNER JOIN clientes ON ventas.idCliente = clientes.idCliente WHERE ventas.idVenta = 2;
+SELECT * FROM nombredeCliente;
+SELECT * FROM datosProveedor;
+SELECT * FROM vistatelefonosLimpios;
 
--- Obtener el total de ventas de cada cliente:
 
-SELECT nombreCliente, apellidoCliente, COUNT(ventas.idVenta) AS 'Total de Ventas' 
-FROM clientes RIGHT JOIN ventas ON clientes.idCliente = ventas.idCliente GROUP BY clientes.idCliente;
+-- Obtener el nombre del cliente que realizó el pedido con idPedido = 3:
 
--- Obtener todos los productos de la categoría electrónica con su nombre de categoría
-
-SELECT nombreProducto, nombreCategoria
-FROM productos
-INNER JOIN categorias ON productos.idCategoria = categorias.idCategoria WHERE categorias.idCategoria = 1;
-
--- Obtener el nombre y la dirección de todos los clientes que han realizado ventas:
-
-SELECT nombreCliente, direccionCliente
+SELECT nombre AS Nombre_Cliente
 FROM clientes
-INNER JOIN ventas ON clientes.idCliente = ventas.idCliente GROUP BY clientes.idCliente;
+INNER JOIN pedidos ON pedidos.idCliente = clientes.idCliente
+WHERE pedidos.idPedido = 3;
 
--- Obtener los detalles de ventas de la venta con idVenta = 1, incluyendo el nombre del producto y su precio de venta:
+-- Obtener el total de pedidos de cada cliente:
 
-SELECT nombreProducto, precioVenta
-FROM productos INNER JOIN ventas_detalle ON productos.idProducto = ventas_detalle.idProducto
-JOIN ventas ON ventas_detalle.idVenta = ventas.idVenta WHERE ventas.idVenta = 1;
-
-
--- Obtener el total de ventas realizadas por cada cliente, mostrando el nombre del cliente y la cantidad total de ventas (es igual que la cuarta profe)
-
-SELECT nombreCliente, COUNT(ventas.idVenta) AS 'Total de Ventas'
-FROM clientes RIGHT JOIN ventas ON clientes.idCliente = ventas.idCliente GROUP BY clientes.idCliente;
-
--- Obtener los nombres de las categorías y la cantidad de productos vendidos en cada categoría
-
-SELECT nombreCategoria, SUM(ventas_detalle.cantidad) AS 'Productos vendidos en cada Categoría'
-FROM categorias 
-JOIN productos ON categorias.idCategoria = productos.idCategoria
-JOIN ventas_detalle ON productos.idProducto = ventas_detalle.idProducto GROUP BY categorias.idCategoria;
-
--- Obtener el nombre de cada cliente y el total gastado en compras por cada cliente, incluyendo aquellos clientes que no han realizado compras:
-
-SELECT nombreCliente,  SUM(productos.precioCompra) AS 'Total gastado en compra'
+SELECT nombre, apellido, COUNT(pedidos.idPedido) AS 'Total de Pedidos' 
 FROM clientes 
-JOIN ventas ON ventas.idCliente = clientes.idCliente
-JOIN ventas_detalle ON ventas.idVenta = ventas_detalle.idVenta
-JOIN productos ON ventas_detalle.idProducto = productos.idProducto GROUP BY clientes.nombreCliente;
+RIGHT JOIN pedidos ON clientes.idCliente = pedidos.idCliente GROUP BY clientes.idCliente;
+
+-- Obtener todos los productos que sean 10 o más en cantidad
+
+SELECT nombre, cantidad FROM productos WHERE cantidad >= 10; 
