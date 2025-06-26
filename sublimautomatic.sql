@@ -133,7 +133,6 @@ SELECT * FROM pedidos;
 SELECT * FROM proveedores;
 SELECT * FROM productos;
 SELECT * FROM clientes;
-SELECT * FROM pedidoproductos;
 
 -- Mirar vistas
 
