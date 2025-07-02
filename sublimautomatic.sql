@@ -7,7 +7,7 @@ CREATE TABLE Cliente (
   nombre VARCHAR(25) NOT NULL,
   apellido VARCHAR(25) NOT NULL,
   direccion VARCHAR(50),
-  telefono VARCHAR(25),
+  telefono VARCHAR(15)
 );
 
 -- Tabla Pedidos
@@ -40,7 +40,7 @@ CREATE TABLE Insumo (
 CREATE TABLE Proveedor (
   idProveedor INT(3) PRIMARY KEY,
   nombreProveedor VARCHAR(25) NOT NULL,
-  telefono VARCHAR(25),
+  telefono VARCHAR(15),
   direccion VARCHAR(50),
   email VARCHAR(30)
 );
@@ -80,11 +80,13 @@ INSERT INTO Cliente (idCliente, nombre, apellido, telefono, direccion) VALUES
 (1, 'Facundo', 'Palmariciotti', '1523025534', 'Av. Entre Rios 745 6A'),
 (2, 'Leandro Javier', 'Fernández', '1522224444', 'Av Cordoba 2886 PB'),
 (3, 'Rosana', 'Sosa', '1534042502', 'Vélez Sársfield 680 (Avellaneda)'),
-(4, 'Iván', 'Bonanata', '1534042502', 'Deán Funes 2225 (Merlo)'),
+(4, 'Iván', 'Bona', '1534042502', 'Deán Funes 2225 (Merlo)'),
 (5, 'Kenneth', 'Loreto', '154893707', 'Av. Las Heras 2840'),
 (6, 'Gian', 'Malaspina', '153592088', 'Lavalle 540 2C'),
 (7, 'Maria Paz', 'Short', '135039237', 'Islas Malvinas 2681 Timbre 2 (San Andrés)'),
-(8, 'Mauro', 'Di Gallo', '1523690874', 'Av Brasil 1021 PB')
+(8, 'Mauro', 'Di Gallo', '1523690874', 'Av Brasil 1021 PB'),
+(9, 'Nahuel', 'Hemsi', '1522359089', 'Av. Callao 742 6C'),
+(10, 'Gustavo', 'Franco', '1122515463', 'Av. Santa Fe 2842 6to5')
 ;
 
 -- Insertar datos de productos a la tabla productos
@@ -126,7 +128,6 @@ INSERT INTO Insumo (idInsumo, nombreInsumo, cantidad, precioUnitario) VALUES
 (8,  'Buzo Sublimable Negro', 10, 4000)
 ;
 
-
 -- Crear una tabla de vista con información del cliente
 CREATE VIEW nombredeCliente AS
 SELECT nombre, apellido, telefono, direccion FROM Cliente;
@@ -139,7 +140,7 @@ SELECT nombreProveedor, telefono, email, direccion FROM Proveedor;
 -- Seleccionar las distintas tablas para ver sus valores
 SELECT * FROM Insumo;
 SELECT * FROM Proveedor;
-SELECT * FROM Pedidos;
+SELECT * FROM Proveedor;
 SELECT * FROM Producto;
 SELECT * FROM Cliente;
 
@@ -164,4 +165,4 @@ RIGHT JOIN pedidos ON cliente.idCliente = pedidos.idCliente GROUP BY cliente.idC
 
 -- Obtener todos los productos que sean 10 o más en cantidad
 
-SELECT nombre, cantidad FROM producto WHERE cantidad >= 10; 
+SELECT nombre, cantidad FROM producto WHERE cantidad >= 10;
