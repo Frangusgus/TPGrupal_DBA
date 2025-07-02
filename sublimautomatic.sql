@@ -7,7 +7,7 @@ CREATE TABLE Cliente (
   nombre VARCHAR(25) NOT NULL,
   apellido VARCHAR(25) NOT NULL,
   direccion VARCHAR(50),
-  telefono INT(14)
+  telefono VARCHAR(25),
 );
 
 -- Tabla Pedidos
@@ -40,7 +40,7 @@ CREATE TABLE Insumo (
 CREATE TABLE Proveedor (
   idProveedor INT(3) PRIMARY KEY,
   nombreProveedor VARCHAR(25) NOT NULL,
-  telefono INT(14),
+  telefono VARCHAR(25),
   direccion VARCHAR(50),
   email VARCHAR(30)
 );
