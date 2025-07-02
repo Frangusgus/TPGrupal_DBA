@@ -126,25 +126,6 @@ INSERT INTO Insumo (idInsumo, nombreInsumo, cantidad, precioUnitario) VALUES
 (8,  'Buzo Sublimable Negro', 10, 4000)
 ;
 
--- Trigger que descuenta el stock
-
-DELIMITER $$
-
-CREATE TRIGGER descontar_stock_al_entregar
-AFTER UPDATE ON Pedidos
-FOR EACH ROW
-BEGIN
-  -- Solo actuar si el estado cambió a 'entregado'
-  IF NEW.estado = 'entregado' AND OLD.estado != 'entregado' THEN
-    -- Iterar sobre los productos del pedido y descontar del stock
-    UPDATE Producto p
-    JOIN PedidoProducto pp ON p.idProducto = pp.idProducto
-    SET p.cantidad = p.cantidad - pp.cantidad
-    WHERE pp.idPedido = NEW.idPedido;
-  END IF;
-END $$
-
-DELIMITER ;
 
 -- Crear una tabla de vista con información del cliente
 CREATE VIEW nombredeCliente AS
@@ -158,7 +139,7 @@ SELECT nombreProveedor, telefono, email, direccion FROM Proveedor;
 -- Seleccionar las distintas tablas para ver sus valores
 SELECT * FROM Insumo;
 SELECT * FROM Proveedor;
-SELECT * FROM Proveedor;
+SELECT * FROM Pedidos;
 SELECT * FROM Producto;
 SELECT * FROM Cliente;
 
